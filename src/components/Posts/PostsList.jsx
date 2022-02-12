@@ -1,16 +1,17 @@
 import { useEffect, useState } from 'react';
-import api from "../../api"
+import useHttp from '../../hooks/useHttp';
 import "./css/style.postlist.css"
 
 function PostsList() {
 	const [listOfPosts, setListOfPosts] = useState([])
+	const { loading, error, request } = useHttp()
 	useEffect(() => {
-		api.get("/posts").then(res => setListOfPosts(res.data))
+		request("/posts").then(res => setListOfPosts(res.data))
 	}, [])
 	return (
 		<>
 			{
-				listOfPosts.map(post => {
+				listOfPosts && listOfPosts.map(post => {
 					return (
 						<div key={post.id} className="post">
 							<h3 className='post__title'>{post.title}</h3>
