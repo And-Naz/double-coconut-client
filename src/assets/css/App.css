@@ -1,0 +1,83 @@
+.app {
+	width: 100%;
+	height: auto;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+.form {
+	font-family: Arial, Helvetica, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 400px;
+}
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 320px;
+	height: auto;
+	padding: 20px;
+	border: 5px solid dodgerblue;
+	border-radius: 5px;
+}
+
+.input {
+	height: 30px;
+	margin-bottom: 10px;
+	border: 2px solid grey;
+	border-radius: 5px;
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.input--tall {
+	height: 60px;
+}
+
+.formButton {
+	margin-top: 15px;
+	height: 40px;
+	border: none;
+	background-color: lightskyblue;
+	border-radius: 5px;
+	color: white;
+	flex: 1;
+}
+
+.formButton:hover {
+	cursor: pointer;
+	background-color: dodgerblue;
+}
+
+.formContainer span {
+	color: red;
+}
+
+.formRow {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.formRow + .formRow {
+	margin-top: 0.5rem;
+}
+
+.formSwitchButton {
+	margin-top: 15px;
+	height: 40px;
+	border: none;
+	background-color: white;
+	border-radius: 5px;
+	color: lightskyblue;
+	flex: 1;
+}
+
+.formSwitchButton:hover {
+	cursor: pointer;
+	color: dodgerblue;
+}
