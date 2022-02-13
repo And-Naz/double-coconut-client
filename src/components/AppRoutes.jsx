@@ -1,5 +1,7 @@
 import { lazy, Suspense } from "react"
 import { Routes, Route, Navigate } from "react-router-dom"
+import { useContext } from "react"
+import AuthContext from "../contexts/AuthContext"
 const NotFound = lazy(() => import('../pages/NotFound'))
 const Home = lazy(() => import('../pages/Home'))
 const Feed = lazy(() => import('../pages/Feed'))
@@ -29,12 +31,13 @@ const routeGenerator = routes => {
 	}, [])
 }
 
-const createRoutes = isAutorized => {
-	return routeGenerator(isAutorized ? pageWithAuth() : pageWithoutAuth())
+const createRoutes = isAuthenticated => {
+	return routeGenerator(isAuthenticated ? pageWithAuth() : pageWithoutAuth())
 }
 
-export default function AppRoutes({ isAutorized }) {
-	const routes = createRoutes(true)
+export default function AppRoutes() {
+	const { isAuthenticated } = useContext(AuthContext)
+	const routes = createRoutes(isAuthenticated)
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			<Routes>

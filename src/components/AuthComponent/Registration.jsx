@@ -1,9 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import api from "../../api"
+import Button from "../uiKits/Button"
 
-function Registration({ triggerForms }) {
+function Registration({ triggerForms, loading, onSubmit }) {
 	const initialValues = {
 		login: "",
 		email: "",
@@ -23,12 +23,6 @@ function Registration({ triggerForms }) {
 		lastName: Yup.string().required("Last Name is required"),
 		companyName: Yup.string().required("Company Name is required"),
 	});
-
-	const onSubmit = (data) => {
-		// axios.post("http://localhost:3001/auth", data).then(() => {
-		// 	console.log(data);
-		// });
-	};
 
 	return (
 		<div className="form">
@@ -118,10 +112,10 @@ function Registration({ triggerForms }) {
 						</label>
 					</div>
 					<div className="formRow">
-						<button type="submit" className="formButton">Register</button>
+						<Button disabled={loading} mode="form-submit">Register</Button>
 					</div>
 					<div className="formRow">
-						<button className="formSwitchButton" onClick={triggerForms}>Already have account?</button>
+						<Button disabled={loading} onClick={triggerForms} mode="link">Already have account?</Button>
 					</div>
 				</Form>
 			</Formik>

@@ -28,10 +28,12 @@
 
 .navbar__item {
 	padding: 0.25rem;
+	color: white;
+	font-weight: bold;
 }
 
 .navbar__item h1 {
-	color: white;
+	font-size: 30px;
 }
 
 .navbar__item + .navbar__item {
@@ -40,13 +42,15 @@
 
 .navbar__item--last {
 	margin-left: auto !important;
-	margin-right: 20px;
 }
 
+.navbar__item--last + .navbar__item {
+	margin-left: 10px;
+	margin-right: 5px;
+}
 .navbar__item a {
 	text-decoration: none;
-	color: white;
-	font-weight: bold;
+	color: inherit;
 }
 
 .navbar__item a:hover:not(.active) {

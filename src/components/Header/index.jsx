@@ -1,9 +1,11 @@
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import AuthContext from '../../contexts/AuthContext'
+import Button from "../uiKits/Button"
 import "./style.css"
 
-const isAutorized = false
-
 function Header() {
+	const { isAuthenticated, logout, user } = useContext(AuthContext)
 	return (
 		<header className="header">
 			<nav className="navbar">
@@ -12,11 +14,11 @@ function Header() {
 						<h1>Double Coconut</h1>
 					</li>
 					{
-						isAutorized
+						isAuthenticated
 						&& (
 							<>
 								<li className="navbar__item">
-									<NavLink to="/auth">
+									<NavLink to="/profile">
 										Profile
 									</NavLink>
 								</li>
@@ -26,7 +28,10 @@ function Header() {
 									</NavLink>
 								</li>
 								<li className="navbar__item navbar__item--last">
-									<button>Log Out</button>
+									{user && user?.firstName + " " + user?.lastName}
+								</li>
+								<li className="navbar__item">
+									<Button onClick={e => logout()}>Log Out</Button>
 								</li>
 							</>
 						)

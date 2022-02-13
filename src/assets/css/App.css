@@ -10,7 +10,6 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 400px;
 }
 .formContainer {
 	display: flex;
@@ -36,19 +35,24 @@
 	height: 60px;
 }
 
-.formButton {
-	margin-top: 15px;
-	height: 40px;
-	border: none;
-	background-color: lightskyblue;
-	border-radius: 5px;
-	color: white;
-	flex: 1;
+.form-button {
+	margin-top: 15px !important;
+	height: 40px !important;
+	border: none !important;
+	background-color: lightskyblue !important;
+	border-radius: 5px !important;
+	color: white !important;
+	flex: 1 !important;
+	padding: 0 !important;
 }
 
-.formButton:hover {
-	cursor: pointer;
-	background-color: dodgerblue;
+.form-button + .form-button {
+	margin-left: 5px;
+}
+
+.form-button:hover {
+	cursor: pointer !important;
+	background-color: dodgerblue !important;
 }
 
 .formContainer span {
@@ -67,17 +71,18 @@
 	margin-top: 0.5rem;
 }
 
-.formSwitchButton {
-	margin-top: 15px;
-	height: 40px;
-	border: none;
-	background-color: white;
-	border-radius: 5px;
-	color: lightskyblue;
-	flex: 1;
+.link-button {
+	margin-top: 15px !important;
+	height: 40px !important;
+	border: none !important;
+	background-color: white !important;
+	border-radius: 5px !important;
+	color: lightskyblue !important;
+	flex: 1 !important;
+	padding: 0 !important;
 }
 
-.formSwitchButton:hover {
-	cursor: pointer;
-	color: dodgerblue;
+.link-button:hover {
+	cursor: pointer !important;
+	color: dodgerblue !important;
 }

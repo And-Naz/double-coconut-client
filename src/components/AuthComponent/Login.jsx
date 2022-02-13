@@ -1,9 +1,9 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import api from "../../api"
+import Button from "../uiKits/Button"
 
-function Login({ triggerForms }) {
+function Login({ triggerForms, loading, onSubmit }) {
 	const initialValues = {
 		loginOrEemail: "",
 		password: "",
@@ -13,12 +13,6 @@ function Login({ triggerForms }) {
 		loginOrEemail: Yup.string().required("Login or Email is required"),
 		password: Yup.string().min(6).max(20).required("Password is required."),
 	});
-
-	const onSubmit = (data) => {
-		// axios.post("http://localhost:3001/auth", data).then(() => {
-		// 	console.log(data);
-		// });
-	};
 
 	return (
 		<div className="form">
@@ -52,10 +46,10 @@ function Login({ triggerForms }) {
 						</label>
 					</div>
 					<div className="formRow">
-						<button type="submit" className="formButton">Register</button>
+						<Button disabled={loading} mode="form-submit">Log In</Button>
 					</div>
 					<div className="formRow">
-						<button className="formSwitchButton" onClick={triggerForms}>Create account?</button>
+						<Button disabled={loading} onClick={triggerForms} mode="link">Create account?</Button>
 					</div>
 				</Form>
 			</Formik>

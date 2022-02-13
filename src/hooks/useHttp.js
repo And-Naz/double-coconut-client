@@ -1,9 +1,19 @@
-import api from "../api"
-import { useState, useCallback } from 'react'
+import { useMemo, useContext, useState, useCallback } from "react"
+import AuthContext from "../contexts/AuthContext"
+import axios from "axios"
+
+const baseURL = process.env.REACT_APP_API
 
 function useHttp() {
+	const auth = useContext(AuthContext)
 	const [loading, setLoading] = useState(false)
-	const [error, setError] = useState(null)
+	const api = useMemo(() => {
+		const headers = { 'Content-Type': 'application/json' }
+		if (auth.isAuthenticated) {
+			headers['authorization'] = auth.token
+		}
+		return axios.create({ baseURL, headers });
+	}, [auth])
 	const request = useCallback(async (url, method = 'GET', body = null, headers = {}) => {
 		setLoading(true)
 		try {
@@ -23,18 +33,14 @@ function useHttp() {
 					break;
 			}
 			const response = await requestMethod(url, body, { headers })
-			if (response.statusText !== "OK") {
-				throw new Error(response.data || "Bad Request")
-			}
 			setLoading(false)
-			return response.data
+			return response
 		} catch (error) {
-			setError(error.message)
 			setLoading(false)
+			throw error
 		}
 	}, [])
-	const clear = useCallback(() => setError(null), [])
-	return { loading, error, request, clear }
+	return { loading, request }
 }
 
 export default useHttp
